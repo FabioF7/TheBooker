@@ -1,0 +1,179 @@
+{
+  "identity": {
+    "name": "E1",
+    "role": "The Anti-AI Designer",
+    "philosophy": "Fusion over Imitation. Emotion First. Content is King.",
+    "anti_patterns": [
+      "Purple/Teal gradients for everything",
+      "Inter font for headings",
+      "Center-aligned text blocks",
+      "Low contrast gray-on-gray"
+    ]
+  },
+  "project": {
+    "name": "The Booker",
+    "type": "SaaS Appointment Scheduling",
+    "theme_strategy": "Midnight Luxury (Dark Mode)",
+    "emotional_tone": "Premium, Inviting, Efficient, Trustworthy"
+  },
+  "design_system": {
+    "colors": {
+      "palette": {
+        "background": {
+          "default": "bg-slate-950",
+          "card": "bg-slate-900",
+          "subtle": "bg-slate-900/50"
+        },
+        "foreground": {
+          "default": "text-slate-50",
+          "muted": "text-slate-400",
+          "inverted": "text-slate-950"
+        },
+        "primary": {
+          "default": "bg-violet-600",
+          "hover": "bg-violet-500",
+          "foreground": "text-white",
+          "glow": "shadow-[0_0_20px_rgba(124,58,237,0.5)]"
+        },
+        "secondary": {
+          "default": "bg-slate-800",
+          "hover": "bg-slate-700",
+          "foreground": "text-slate-200"
+        },
+        "accent": {
+          "success": "text-emerald-400",
+          "error": "text-rose-400",
+          "warning": "text-amber-400"
+        },
+        "border": {
+          "default": "border-slate-800",
+          "active": "border-violet-500/50"
+        }
+      },
+      "rules": [
+        "Never use pure black (#000000). Use Slate-950.",
+        "Primary color (Violet) is for CTAs and Active states ONLY.",
+        "Use colored borders (Violet-500/30) for active inputs/cards instead of just glow.",
+        "Ensure text contrast: Slate-400 is the minimum for body text."
+      ]
+    },
+    "typography": {
+      "fonts": {
+        "heading": {
+          "family": "Manrope",
+          "weights": ["600", "700", "800"],
+          "usage": "Page titles, Section headers, Card titles"
+        },
+        "body": {
+          "family": "Inter",
+          "weights": ["400", "500"],
+          "usage": "Paragraphs, UI labels, Inputs"
+        },
+        "mono": {
+          "family": "JetBrains Mono",
+          "usage": "Time slots, Dates, Reference numbers"
+        }
+      },
+      "scale": {
+        "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+        "h2": "text-3xl font-semibold tracking-tight",
+        "h3": "text-xl font-semibold",
+        "body": "text-base leading-relaxed text-slate-400",
+        "small": "text-sm font-medium text-slate-500"
+      }
+    },
+    "spacing": {
+      "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+      "section": "py-12 md:py-24",
+      "card_padding": "p-6 md:p-8",
+      "grid_gap": "gap-6 md:gap-8"
+    },
+    "visual_enhancers": {
+      "radius": "rounded-xl",
+      "shadows": {
+        "card": "shadow-xl shadow-black/20",
+        "glow": "shadow-[0_0_40px_-10px_rgba(124,58,237,0.3)]"
+      },
+      "glass": "backdrop-blur-xl bg-slate-950/80 border border-white/10",
+      "gradients": {
+        "hero": "bg-gradient-to-b from-slate-900 to-slate-950",
+        "card_hover": "bg-gradient-to-br from-slate-800 to-slate-900"
+      }
+    }
+  },
+  "components": {
+    "BookingWizard": {
+      "layout": "Split Screen (Desktop) / Stacked (Mobile)",
+      "structure": {
+        "sidebar": "Sticky summary of selection (Service, Provider, Price)",
+        "main": "Step content (Service Grid -> Provider List -> Calendar -> Form)"
+      },
+      "steps": [
+        {
+          "id": "service",
+          "type": "BentoGrid",
+          "card_style": "Aspect-square or 4:3, Image background with gradient overlay, Title at bottom left"
+        },
+        {
+          "id": "provider",
+          "type": "List/Grid",
+          "card_style": "Horizontal card with Avatar (left), Info (middle), Availability (right)"
+        },
+        {
+          "id": "datetime",
+          "type": "SplitPanel",
+          "left": "Calendar (Shadcn)",
+          "right": "TimeSlotGrid (Pill buttons)"
+        },
+        {
+          "id": "confirm",
+          "type": "Form",
+          "fields": ["Name", "Email", "Phone", "Notes"]
+        }
+      ]
+    },
+    "UI_Elements": {
+      "Button": {
+        "primary": "bg-violet-600 hover:bg-violet-500 text-white rounded-full px-8 py-6 font-semibold shadow-lg shadow-violet-900/20 transition-all hover:scale-[1.02]",
+        "secondary": "bg-slate-800 hover:bg-slate-700 text-white rounded-full px-6 py-6 font-medium border border-slate-700"
+      },
+      "Card": {
+        "base": "bg-slate-900 border border-slate-800 hover:border-violet-500/50 transition-colors duration-300 rounded-2xl overflow-hidden group"
+      },
+      "Input": {
+        "base": "bg-slate-950 border-slate-800 focus:border-violet-500 focus:ring-violet-500/20 rounded-lg h-12"
+      }
+    }
+  },
+  "assets": {
+    "images": {
+      "salon_interior": [
+        "https://images.pexels.com/photos/853427/pexels-photo-853427.jpeg",
+        "https://images.pexels.com/photos/3993308/pexels-photo-3993308.jpeg"
+      ],
+      "providers": [
+        "https://images.pexels.com/photos/33871730/pexels-photo-33871730.jpeg",
+        "https://images.pexels.com/photos/18243773/pexels-photo-18243773.jpeg",
+        "https://images.pexels.com/photos/18243763/pexels-photo-18243763.jpeg"
+      ]
+    },
+    "icons": "Lucide React (default)"
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install 'lucide-react' and 'date-fns' if not present.",
+    "2. THEME: Ensure 'dark' class is applied to the root/html element. Use 'slate-950' as the global background.",
+    "3. FONTS: Import 'Manrope' and 'Inter' from Google Fonts in index.css.",
+    "4. LAYOUT: Build the 'BookingWizard' as the core feature. Use a 'StepProvider' context to manage state.",
+    "5. ANIMATION: Add 'framer-motion' for smooth step transitions (slide-in/fade-out).",
+    "6. LANGUAGE: Implement a simple toggle (EN/PT-BR) using a React Context or simple state for strings.",
+    "7. CRITICAL: Do not use default Shadcn card styles. Override with the 'Midnight Luxury' styles defined above.",
+    "8. ACCESSIBILITY: Ensure all inputs have labels and contrast ratios are met (Violet-600 on Slate-950 is good, but check text on Violet)."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI Slop': No generic centered layouts. Use asymmetry.",
+    "Spacing: Use p-8 or p-12 for sections. Don't cram content.",
+    "Micro-interactions: Buttons should scale slightly on hover. Inputs should glow on focus.",
+    "Glassmorphism: Use it sparingly for sticky headers or floating summaries.",
+    "Data-TestID: Add 'data-testid' to all interactive elements (e.g., 'booking-step-1-next')."
+  ]
+}
