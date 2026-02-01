@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TheBooker.Application.Features.Availability;
+using TheBooker.Application.Services.Availability;
 using TheBooker.Domain.Common.Results;
 
 namespace TheBooker.Api.Endpoints;
