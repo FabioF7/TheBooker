@@ -23,16 +23,24 @@ public sealed class BusinessHours : ValueObject
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        PropertyNameCaseInsensitive = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-    public DayScheduleData Monday { get; private set; } = new(false, null, null);
-    public DayScheduleData Tuesday { get; private set; } = new(false, null, null);
-    public DayScheduleData Wednesday { get; private set; } = new(false, null, null);
-    public DayScheduleData Thursday { get; private set; } = new(false, null, null);
-    public DayScheduleData Friday { get; private set; } = new(false, null, null);
-    public DayScheduleData Saturday { get; private set; } = new(false, null, null);
-    public DayScheduleData Sunday { get; private set; } = new(false, null, null);
+    [JsonPropertyName("monday")]
+    public DayScheduleData Monday { get; set; } = new(false, null, null);
+    [JsonPropertyName("tuesday")]
+    public DayScheduleData Tuesday { get; set; } = new(false, null, null);
+    [JsonPropertyName("wednesday")]
+    public DayScheduleData Wednesday { get; set; } = new(false, null, null);
+    [JsonPropertyName("thursday")]
+    public DayScheduleData Thursday { get; set; } = new(false, null, null);
+    [JsonPropertyName("friday")]
+    public DayScheduleData Friday { get; set; } = new(false, null, null);
+    [JsonPropertyName("saturday")]
+    public DayScheduleData Saturday { get; set; } = new(false, null, null);
+    [JsonPropertyName("sunday")]
+    public DayScheduleData Sunday { get; set; } = new(false, null, null);
 
     // For EF Core and JSON deserialization
     public BusinessHours() { }
