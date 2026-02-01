@@ -39,11 +39,14 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
         builder.Property(t => t.BufferMinutes)
             .HasDefaultValue(0);
 
-        // JSONB mapping for BusinessHours - store as single JSON column
-        builder.OwnsOne(t => t.BusinessHours, bh =>
-        {
-            bh.ToJson("business_hours");
-        });
+        // BusinessHours as JSON string column
+        builder.Property(t => t.BusinessHours)
+            .HasColumnName("business_hours")
+            .HasColumnType("jsonb")
+            .HasConversion(
+                v => v.ToJson(),
+                v => BusinessHours.FromJson(v))
+            .IsRequired();
 
         builder.Property(t => t.IsActive)
             .HasDefaultValue(true);
