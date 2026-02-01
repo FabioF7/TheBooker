@@ -40,7 +40,7 @@ public static class AvailabilityEndpoints
             })
             .WithName("GetAvailability")
             .WithDescription("Get available time slots for a provider on a specific date")
-            .Produces<Services.Availability.AvailabilityResponse>(200)
+            .Produces<AvailabilityResponse>(200)
             .ProducesProblem(404);
     }
 
