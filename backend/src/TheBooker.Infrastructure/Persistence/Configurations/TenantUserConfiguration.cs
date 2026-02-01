@@ -24,6 +24,9 @@ public class TenantUserConfiguration : IEntityTypeConfiguration<TenantUser>
                 .HasColumnName("email")
                 .HasMaxLength(Email.MaxLength)
                 .IsRequired();
+
+            // Composite unique index on TenantId + Email
+            email.HasIndex(e => e.Value);
         });
 
         builder.Property(u => u.PasswordHash)
