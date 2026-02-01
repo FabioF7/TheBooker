@@ -13,3 +13,7 @@
 /app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/refint/TheBooker.Infrastructure.dll
 /app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.pdb
 /app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/ref/TheBooker.Infrastructure.dll
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Infrastructure.runtimeconfig.json
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Domain.dll
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Domain.pdb
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.genruntimeconfig.cache
