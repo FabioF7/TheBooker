@@ -1,0 +1,12 @@
+/app/backend/src/TheBooker.Domain/bin/Release/net9.0/TheBooker.Domain.deps.json
+/app/backend/src/TheBooker.Domain/bin/Release/net9.0/TheBooker.Domain.dll
+/app/backend/src/TheBooker.Domain/bin/Release/net9.0/TheBooker.Domain.pdb
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.csproj.AssemblyReference.cache
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.AssemblyInfoInputs.cache
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.AssemblyInfo.cs
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.csproj.CoreCompileInputs.cache
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.dll
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/refint/TheBooker.Domain.dll
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/TheBooker.Domain.pdb
+/app/backend/src/TheBooker.Domain/obj/Release/net9.0/ref/TheBooker.Domain.dll

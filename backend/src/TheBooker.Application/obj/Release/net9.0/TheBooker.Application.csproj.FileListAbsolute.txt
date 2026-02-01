@@ -1,0 +1,15 @@
+/app/backend/src/TheBooker.Application/bin/Release/net9.0/TheBooker.Application.deps.json
+/app/backend/src/TheBooker.Application/bin/Release/net9.0/TheBooker.Application.dll
+/app/backend/src/TheBooker.Application/bin/Release/net9.0/TheBooker.Application.pdb
+/app/backend/src/TheBooker.Application/bin/Release/net9.0/TheBooker.Domain.dll
+/app/backend/src/TheBooker.Application/bin/Release/net9.0/TheBooker.Domain.pdb
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.csproj.AssemblyReference.cache
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.GeneratedMSBuildEditorConfig.editorconfig
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.AssemblyInfoInputs.cache
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.AssemblyInfo.cs
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.csproj.CoreCompileInputs.cache
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooke.04D40325.Up2Date
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.dll
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/refint/TheBooker.Application.dll
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/TheBooker.Application.pdb
+/app/backend/src/TheBooker.Application/obj/Release/net9.0/ref/TheBooker.Application.dll
