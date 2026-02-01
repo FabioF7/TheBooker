@@ -187,6 +187,10 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("CustomBusinessHours")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("custom_business_hours");
+
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -225,6 +229,11 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(0);
+
+                    b.Property<string>("BusinessHours")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("business_hours");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -481,196 +490,6 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.OwnsOne("TheBooker.Domain.ValueObjects.BusinessHours", "CustomBusinessHours", b1 =>
-                        {
-                            b1.Property<Guid>("ServiceProviderId")
-                                .HasColumnType("uuid");
-
-                            b1.HasKey("ServiceProviderId");
-
-                            b1.ToTable("service_providers");
-
-                            b1.ToJson("custom_business_hours");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ServiceProviderId");
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Friday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Monday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Saturday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Sunday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Thursday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Tuesday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Wednesday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursServiceProviderId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursServiceProviderId");
-
-                                    b2.ToTable("service_providers");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursServiceProviderId");
-                                });
-
-                            b1.Navigation("Friday")
-                                .IsRequired();
-
-                            b1.Navigation("Monday")
-                                .IsRequired();
-
-                            b1.Navigation("Saturday")
-                                .IsRequired();
-
-                            b1.Navigation("Sunday")
-                                .IsRequired();
-
-                            b1.Navigation("Thursday")
-                                .IsRequired();
-
-                            b1.Navigation("Tuesday")
-                                .IsRequired();
-
-                            b1.Navigation("Wednesday")
-                                .IsRequired();
-                        });
-
                     b.OwnsOne("TheBooker.Domain.ValueObjects.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("ServiceProviderId")
@@ -690,8 +509,6 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                                 .HasForeignKey("ServiceProviderId");
                         });
 
-                    b.Navigation("CustomBusinessHours");
-
                     b.Navigation("Email");
 
                     b.Navigation("Tenant");
@@ -701,196 +518,6 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("TheBooker.Domain.Entities.Tenant", b =>
                 {
-                    b.OwnsOne("TheBooker.Domain.ValueObjects.BusinessHours", "BusinessHours", b1 =>
-                        {
-                            b1.Property<Guid>("TenantId")
-                                .HasColumnType("uuid");
-
-                            b1.HasKey("TenantId");
-
-                            b1.ToTable("tenants");
-
-                            b1.ToJson("business_hours");
-
-                            b1.WithOwner()
-                                .HasForeignKey("TenantId");
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Friday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Monday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Saturday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Sunday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Thursday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Tuesday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.OwnsOne("TheBooker.Domain.ValueObjects.DaySchedule", "Wednesday", b2 =>
-                                {
-                                    b2.Property<Guid>("BusinessHoursTenantId")
-                                        .HasColumnType("uuid");
-
-                                    b2.Property<TimeOnly?>("CloseTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.Property<bool>("IsOpen")
-                                        .HasColumnType("boolean");
-
-                                    b2.Property<TimeOnly?>("OpenTime")
-                                        .HasColumnType("time without time zone");
-
-                                    b2.HasKey("BusinessHoursTenantId");
-
-                                    b2.ToTable("tenants");
-
-                                    b2.WithOwner()
-                                        .HasForeignKey("BusinessHoursTenantId");
-                                });
-
-                            b1.Navigation("Friday")
-                                .IsRequired();
-
-                            b1.Navigation("Monday")
-                                .IsRequired();
-
-                            b1.Navigation("Saturday")
-                                .IsRequired();
-
-                            b1.Navigation("Sunday")
-                                .IsRequired();
-
-                            b1.Navigation("Thursday")
-                                .IsRequired();
-
-                            b1.Navigation("Tuesday")
-                                .IsRequired();
-
-                            b1.Navigation("Wednesday")
-                                .IsRequired();
-                        });
-
                     b.OwnsOne("TheBooker.Domain.ValueObjects.Slug", "Slug", b1 =>
                         {
                             b1.Property<Guid>("TenantId")
@@ -912,9 +539,6 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("TenantId");
                         });
-
-                    b.Navigation("BusinessHours")
-                        .IsRequired();
 
                     b.Navigation("Slug")
                         .IsRequired();

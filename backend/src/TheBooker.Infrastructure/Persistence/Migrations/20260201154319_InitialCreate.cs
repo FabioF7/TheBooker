@@ -19,11 +19,11 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                     slug = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     TimeZoneId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    business_hours = table.Column<string>(type: "jsonb", nullable: false),
                     BufferMinutes = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     CreatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    business_hours = table.Column<string>(type: "jsonb", nullable: false)
+                    ModifiedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,10 +92,10 @@ namespace TheBooker.Infrastructure.Persistence.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    custom_business_hours = table.Column<string>(type: "jsonb", nullable: true),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     CreatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    custom_business_hours = table.Column<string>(type: "jsonb", nullable: true)
+                    ModifiedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
