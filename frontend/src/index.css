@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,8 +12,8 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -22,8 +24,8 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --radius: 0.5rem;
+    --ring: 263 70% 50%;
+    --radius: 0.75rem;
   }
 }
 
@@ -31,28 +33,108 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    @apply dark;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-slate-950 text-slate-50;
+    font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
-  border-radius: 4px;
+  background: hsl(var(--muted));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary));
+}
+
+/* Glassmorphism */
+.glass {
+  @apply backdrop-blur-xl bg-slate-950/80 border border-white/10;
+}
+
+/* Glow effects */
+.glow-violet {
+  box-shadow: 0 0 40px -10px rgba(124, 58, 237, 0.4);
+}
+
+.glow-violet-sm {
+  box-shadow: 0 0 20px -5px rgba(124, 58, 237, 0.3);
+}
+
+/* Time slot buttons */
+.time-slot {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.time-slot::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-violet-600/0 via-violet-600/10 to-violet-600/0 opacity-0 transition-opacity duration-300;
+}
+
+.time-slot:hover::before {
+  @apply opacity-100;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-900/10;
+}
+
+/* Pulse animation for held slot */
+@keyframes pulse-violet {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(124, 58, 237, 0);
+  }
+}
+
+.pulse-violet {
+  animation: pulse-violet 2s infinite;
+}
+
+/* Step indicator */
+.step-indicator {
+  @apply relative;
+}
+
+.step-indicator::after {
+  content: '';
+  @apply absolute top-1/2 left-full w-8 h-0.5 bg-slate-800 -translate-y-1/2;
+}
+
+.step-indicator:last-child::after {
+  @apply hidden;
+}
+
+/* Smooth transitions */
+.page-transition {
+  @apply transition-all duration-500 ease-out;
+}
+
+/* Focus styles */
+input:focus, textarea:focus, select:focus {
+  @apply ring-2 ring-violet-500/20 border-violet-500;
 }
