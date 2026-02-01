@@ -10,9 +10,9 @@ namespace TheBooker.Domain.ValueObjects;
 /// Simple record for JSON serialization.
 /// </summary>
 public sealed record DayScheduleData(
-    bool IsOpen,
-    string? OpenTime,
-    string? CloseTime);
+    [property: JsonPropertyName("isOpen")] bool IsOpen,
+    [property: JsonPropertyName("openTime")] string? OpenTime,
+    [property: JsonPropertyName("closeTime")] string? CloseTime);
 
 /// <summary>
 /// Value object representing weekly business hours.
