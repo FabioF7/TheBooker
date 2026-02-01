@@ -9,6 +9,7 @@
       "TheBooker.Api/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "9.0.12",
+          "Swashbuckle.AspNetCore": "6.6.2",
           "TheBooker.Application": "1.0.0",
           "TheBooker.Infrastructure": "1.0.0"
         },
@@ -135,6 +136,7 @@
           }
         }
       },
+      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
       "Microsoft.Extensions.Caching.Abstractions/9.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.1"
@@ -186,6 +188,44 @@
       "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.1": {
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
+      "Microsoft.Extensions.Diagnostics.Abstractions/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.1",
+          "Microsoft.Extensions.Options": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
+      "Microsoft.Extensions.Hosting.Abstractions/9.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.1",
+          "Microsoft.Extensions.Diagnostics.Abstractions": "9.0.1",
+          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.124.61010"
           }
@@ -293,6 +333,44 @@
           }
         }
       },
+      "Swashbuckle.AspNetCore/6.6.2": {
+        "dependencies": {
+          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
+          "Swashbuckle.AspNetCore.Swagger": "6.6.2",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.6.2",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.6.2"
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/6.6.2": {
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "assemblyVersion": "6.6.2.0",
+            "fileVersion": "6.6.2.401"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/6.6.2": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "6.6.2"
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "assemblyVersion": "6.6.2.0",
+            "fileVersion": "6.6.2.401"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/6.6.2": {
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "assemblyVersion": "6.6.2.0",
+            "fileVersion": "6.6.2.401"
+          }
+        }
+      },
       "TheBooker.Application/1.0.0": {
         "dependencies": {
           "FluentValidation": "11.10.0",
@@ -321,6 +399,7 @@
       "TheBooker.Infrastructure/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.1",
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
           "TheBooker.Application": "1.0.0"
         },
@@ -423,6 +502,13 @@
       "path": "microsoft.entityframeworkcore.relational/9.0.1",
       "hashPath": "microsoft.entityframeworkcore.relational.9.0.1.nupkg.sha512"
     },
+    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
+      "path": "microsoft.extensions.apidescription.server/6.0.5",
+      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
+    },
     "Microsoft.Extensions.Caching.Abstractions/9.0.1": {
       "type": "package",
       "serviceable": true,
@@ -457,6 +543,27 @@
       "sha512": "sha512-Tr74eP0oQ3AyC24ch17N8PuEkrPbD0JqIfENCYqmgKYNOmL8wQKzLJu3ObxTUDrjnn4rHoR1qKa37/eQyHmCDA==",
       "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.1",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.Abstractions/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pfAPuVtHvG6dvZtAa0OQbXdDqq6epnr8z0/IIUjdmV0tMeI8Aj9KxDXvdDvqr+qNHTkmA7pZpChNxwNZt4GXVg==",
+      "path": "microsoft.extensions.diagnostics.abstractions/9.0.1",
+      "hashPath": "microsoft.extensions.diagnostics.abstractions.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Abstractions/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DguZYt1DWL05+8QKWL3b6bW7A2pC5kYFMY5iXM6W2M23jhvcNa8v6AU8PvVJBcysxHwr9/jax0agnwoBumsSwg==",
+      "path": "microsoft.extensions.fileproviders.abstractions/9.0.1",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.9.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CwSMhLNe8HLkfbFzdz0CHWJhtWH3TtfZSicLBd/itFD+NqQtfGHmvqXHQbaFFl3mQB5PBb2gxwzWQyW2pIj7PA==",
+      "path": "microsoft.extensions.hosting.abstractions/9.0.1",
+      "hashPath": "microsoft.extensions.hosting.abstractions.9.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Identity.Core/9.0.1": {
       "type": "package",
@@ -520,6 +627,34 @@
       "sha512": "sha512-mw5vcY2IEc7L+IeGrxpp/J5OSnCcjkjAgJYCm/eD52wpZze8zsSifdqV7zXslSMmfJG2iIUGZyo3KuDtEFKwMQ==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.4",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore/6.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
+      "path": "swashbuckle.aspnetcore/6.6.2",
+      "hashPath": "swashbuckle.aspnetcore.6.6.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.Swagger/6.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ovgPTSYX83UrQUWiS5vzDcJ8TEX1MAxBgDFMK45rC24MorHEPQlZAHlaXj/yth4Zf6xcktpUgTEBvffRQVwDKA==",
+      "path": "swashbuckle.aspnetcore.swagger/6.6.2",
+      "hashPath": "swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/6.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zv4ikn4AT1VYuOsDCpktLq4QDq08e7Utzbir86M5/ZkRaLXbCPF11E1/vTmOiDzRTl0zTZINQU2qLKwTcHgfrA==",
+      "path": "swashbuckle.aspnetcore.swaggergen/6.6.2",
+      "hashPath": "swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/6.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBBb+/8Hm2Q3Wygag+hu2jj69tZW5psuv0vMRXY07Wy+Rrj40vRP8ZTbKBhs91r45/HXT4aY4z0iSBYx1h6JvA==",
+      "path": "swashbuckle.aspnetcore.swaggerui/6.6.2",
+      "hashPath": "swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512"
     },
     "TheBooker.Application/1.0.0": {
       "type": "project",
