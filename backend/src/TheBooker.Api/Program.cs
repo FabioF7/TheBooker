@@ -38,7 +38,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await db.Database.MigrateAsync();
+    var pendingMigrations = await db.Database.GetPendingMigrationsAsync();
+    if (pendingMigrations.Any())
+    {
+        await db.Database.MigrateAsync();
+    }
 }
 
 // Middleware pipeline
