@@ -34,8 +34,8 @@ public sealed class BusinessHours : ValueObject
     public DayScheduleData Saturday { get; private set; } = new(false, null, null);
     public DayScheduleData Sunday { get; private set; } = new(false, null, null);
 
-    // For EF Core
-    private BusinessHours() { }
+    // For EF Core and JSON deserialization
+    public BusinessHours() { }
 
     public static BusinessHours CreateDefault()
     {
