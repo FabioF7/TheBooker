@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TheBooker.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f78a190c8428a3bec1861780450997c15eb21219")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dafa21305faeb28bed47d42ced379742c40e00bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TheBooker.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TheBooker.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
