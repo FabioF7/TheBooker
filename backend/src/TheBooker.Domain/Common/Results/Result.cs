@@ -53,6 +53,11 @@ public class Result
     /// </summary>
     public static Result<TValue> Create<TValue>(TValue? value, Error error) =>
         value is not null ? Success(value) : Failure<TValue>(error);
+
+    /// <summary>
+    /// Implicit conversion from error to failed result.
+    /// </summary>
+    public static implicit operator Result(Error error) => Failure(error);
 }
 
 /// <summary>
