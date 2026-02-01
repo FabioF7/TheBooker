@@ -1,0 +1,15 @@
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Infrastructure.deps.json
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Infrastructure.dll
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Infrastructure.pdb
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Application.dll
+/app/backend/src/TheBooker.Infrastructure/bin/Debug/net9.0/TheBooker.Application.pdb
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.csproj.AssemblyReference.cache
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.AssemblyInfoInputs.cache
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.AssemblyInfo.cs
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.csproj.CoreCompileInputs.cache
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooke.13EC3EFA.Up2Date
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.dll
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/refint/TheBooker.Infrastructure.dll
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/TheBooker.Infrastructure.pdb
+/app/backend/src/TheBooker.Infrastructure/obj/Debug/net9.0/ref/TheBooker.Infrastructure.dll
