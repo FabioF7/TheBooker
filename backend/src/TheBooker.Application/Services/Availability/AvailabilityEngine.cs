@@ -32,14 +32,14 @@ public sealed class AvailabilityEngine
     {
         // Get effective business hours for this provider
         var businessHours = provider.CustomBusinessHours ?? tenant.BusinessHours;
-        var daySchedule = businessHours.GetScheduleForDay(date.DayOfWeek);
+        var (isOpenDay, openTimeDay, closeTimeDay) = businessHours.GetScheduleForDay(date.DayOfWeek);
 
         // Check for overrides (provider-specific first, then tenant-wide)
         var applicableOverride = GetApplicableOverride(overrides, provider.Id, date);
 
         // Determine if day is open and get working hours
         var (isOpen, openTime, closeTime, closedReason) = DetermineWorkingHours(
-            daySchedule, applicableOverride);
+            isOpenDay, openTimeDay, closeTimeDay, applicableOverride);
 
         if (!isOpen || !openTime.HasValue || !closeTime.HasValue)
         {
