@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TheBooker.Application.Common.Interfaces;
 using TheBooker.Infrastructure.Persistence;
 using TheBooker.Infrastructure.Persistence.Repositories;
+using TheBooker.Infrastructure.Services;
 
 namespace TheBooker.Infrastructure;
 
@@ -35,6 +36,9 @@ public static class DependencyInjection
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         services.AddScoped<IServiceProviderRepository, ServiceProviderRepository>();
         services.AddScoped<IScheduleOverrideRepository, ScheduleOverrideRepository>();
+
+        // Background Services
+        services.AddHostedService<ExpiredAppointmentCleanupService>();
 
         return services;
     }
