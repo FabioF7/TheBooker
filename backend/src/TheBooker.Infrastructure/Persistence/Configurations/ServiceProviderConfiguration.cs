@@ -29,11 +29,13 @@ public class ServiceProviderConfiguration : IEntityTypeConfiguration<ServiceProv
                 .HasMaxLength(Email.MaxLength);
         });
 
-        // Custom BusinessHours as JSONB (optional) - store as single JSON column
-        builder.OwnsOne(p => p.CustomBusinessHours, bh =>
-        {
-            bh.ToJson("custom_business_hours");
-        });
+        // Custom BusinessHours as JSON string (optional)
+        builder.Property(p => p.CustomBusinessHours)
+            .HasColumnName("custom_business_hours")
+            .HasColumnType("jsonb")
+            .HasConversion(
+                v => v != null ? v.ToJson() : null,
+                v => v != null ? BusinessHours.FromJson(v) : null);
 
         builder.Property(p => p.IsActive)
             .HasDefaultValue(true);
