@@ -54,10 +54,6 @@ public class TenantUserConfiguration : IEntityTypeConfiguration<TenantUser>
         builder.Property(u => u.CreatedAtUtc)
             .IsRequired();
 
-        // Composite unique index on TenantId + Email
-        builder.HasIndex(u => new { u.TenantId, u.Email })
-            .IsUnique();
-
         // Ignore domain events
         builder.Ignore(u => u.DomainEvents);
     }
