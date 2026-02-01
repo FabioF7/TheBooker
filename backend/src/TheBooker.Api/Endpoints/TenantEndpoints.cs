@@ -168,7 +168,7 @@ public static class TenantEndpoints
             ApplicationDbContext db,
             CancellationToken ct) =>
         {
-            var providerResult = ServiceProvider.Create(
+            var providerResult = Domain.Entities.ServiceProvider.Create(
                 tenantId,
                 request.Name,
                 request.Email);
