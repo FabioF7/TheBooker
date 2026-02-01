@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using TheBooker.Domain.Common.Primitives;
 using TheBooker.Domain.Common.Results;
 
@@ -5,65 +7,40 @@ namespace TheBooker.Domain.ValueObjects;
 
 /// <summary>
 /// Represents business hours for a single day.
+/// Simple record for JSON serialization.
 /// </summary>
-public sealed class DaySchedule : ValueObject
-{
-    public bool IsOpen { get; private init; }
-    public TimeOnly? OpenTime { get; private init; }
-    public TimeOnly? CloseTime { get; private init; }
-
-    private DaySchedule() { }
-
-    public static Result<DaySchedule> Create(bool isOpen, TimeOnly? openTime = null, TimeOnly? closeTime = null)
-    {
-        if (isOpen)
-        {
-            if (openTime is null || closeTime is null)
-                return DomainErrors.BusinessHours.OpenDayRequiresTimes;
-
-            if (closeTime <= openTime)
-                return DomainErrors.BusinessHours.CloseTimeBeforeOpenTime;
-        }
-
-        return new DaySchedule
-        {
-            IsOpen = isOpen,
-            OpenTime = isOpen ? openTime : null,
-            CloseTime = isOpen ? closeTime : null
-        };
-    }
-
-    public static DaySchedule Closed() => new() { IsOpen = false };
-
-    protected override IEnumerable<object?> GetEqualityComponents()
-    {
-        yield return IsOpen;
-        yield return OpenTime;
-        yield return CloseTime;
-    }
-}
+public sealed record DayScheduleData(
+    bool IsOpen,
+    string? OpenTime,
+    string? CloseTime);
 
 /// <summary>
 /// Value object representing weekly business hours.
-/// Designed for JSON serialization to PostgreSQL JSONB.
+/// Stored as JSON string in database.
 /// </summary>
 public sealed class BusinessHours : ValueObject
 {
-    public DaySchedule Monday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Tuesday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Wednesday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Thursday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Friday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Saturday { get; private init; } = DaySchedule.Closed();
-    public DaySchedule Sunday { get; private init; } = DaySchedule.Closed();
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
 
+    public DayScheduleData Monday { get; private set; } = new(false, null, null);
+    public DayScheduleData Tuesday { get; private set; } = new(false, null, null);
+    public DayScheduleData Wednesday { get; private set; } = new(false, null, null);
+    public DayScheduleData Thursday { get; private set; } = new(false, null, null);
+    public DayScheduleData Friday { get; private set; } = new(false, null, null);
+    public DayScheduleData Saturday { get; private set; } = new(false, null, null);
+    public DayScheduleData Sunday { get; private set; } = new(false, null, null);
+
+    // For EF Core
     private BusinessHours() { }
 
     public static BusinessHours CreateDefault()
     {
-        var defaultOpen = new TimeOnly(9, 0);
-        var defaultClose = new TimeOnly(17, 0);
-        var openDay = DaySchedule.Create(true, defaultOpen, defaultClose).Value;
+        var openDay = new DayScheduleData(true, "09:00", "17:00");
+        var closedDay = new DayScheduleData(false, null, null);
 
         return new BusinessHours
         {
@@ -72,21 +49,20 @@ public sealed class BusinessHours : ValueObject
             Wednesday = openDay,
             Thursday = openDay,
             Friday = openDay,
-            Saturday = DaySchedule.Closed(),
-            Sunday = DaySchedule.Closed()
+            Saturday = closedDay,
+            Sunday = closedDay
         };
     }
 
     public static Result<BusinessHours> Create(
-        DaySchedule monday,
-        DaySchedule tuesday,
-        DaySchedule wednesday,
-        DaySchedule thursday,
-        DaySchedule friday,
-        DaySchedule saturday,
-        DaySchedule sunday)
+        DayScheduleData monday,
+        DayScheduleData tuesday,
+        DayScheduleData wednesday,
+        DayScheduleData thursday,
+        DayScheduleData friday,
+        DayScheduleData saturday,
+        DayScheduleData sunday)
     {
-        // Ensure at least one day is open
         var hasOpenDay = monday.IsOpen || tuesday.IsOpen || wednesday.IsOpen ||
                          thursday.IsOpen || friday.IsOpen || saturday.IsOpen || sunday.IsOpen;
 
@@ -108,17 +84,30 @@ public sealed class BusinessHours : ValueObject
     /// <summary>
     /// Gets the schedule for a specific day of week.
     /// </summary>
-    public DaySchedule GetScheduleForDay(DayOfWeek dayOfWeek) => dayOfWeek switch
+    public (bool IsOpen, TimeOnly? OpenTime, TimeOnly? CloseTime) GetScheduleForDay(DayOfWeek dayOfWeek)
     {
-        DayOfWeek.Monday => Monday,
-        DayOfWeek.Tuesday => Tuesday,
-        DayOfWeek.Wednesday => Wednesday,
-        DayOfWeek.Thursday => Thursday,
-        DayOfWeek.Friday => Friday,
-        DayOfWeek.Saturday => Saturday,
-        DayOfWeek.Sunday => Sunday,
-        _ => throw new ArgumentOutOfRangeException(nameof(dayOfWeek))
-    };
+        var day = dayOfWeek switch
+        {
+            DayOfWeek.Monday => Monday,
+            DayOfWeek.Tuesday => Tuesday,
+            DayOfWeek.Wednesday => Wednesday,
+            DayOfWeek.Thursday => Thursday,
+            DayOfWeek.Friday => Friday,
+            DayOfWeek.Saturday => Saturday,
+            DayOfWeek.Sunday => Sunday,
+            _ => throw new ArgumentOutOfRangeException(nameof(dayOfWeek))
+        };
+
+        TimeOnly? openTime = day.OpenTime != null ? TimeOnly.Parse(day.OpenTime) : null;
+        TimeOnly? closeTime = day.CloseTime != null ? TimeOnly.Parse(day.CloseTime) : null;
+
+        return (day.IsOpen, openTime, closeTime);
+    }
+
+    public string ToJson() => JsonSerializer.Serialize(this, JsonOptions);
+
+    public static BusinessHours FromJson(string json) =>
+        JsonSerializer.Deserialize<BusinessHours>(json, JsonOptions) ?? CreateDefault();
 
     protected override IEnumerable<object?> GetEqualityComponents()
     {
@@ -130,4 +119,26 @@ public sealed class BusinessHours : ValueObject
         yield return Saturday;
         yield return Sunday;
     }
+}
+
+/// <summary>
+/// Helper wrapper for DaySchedule used by availability engine.
+/// </summary>
+public sealed class DaySchedule
+{
+    public bool IsOpen { get; init; }
+    public TimeOnly? OpenTime { get; init; }
+    public TimeOnly? CloseTime { get; init; }
+
+    public static DaySchedule FromData(DayScheduleData data)
+    {
+        return new DaySchedule
+        {
+            IsOpen = data.IsOpen,
+            OpenTime = data.OpenTime != null ? TimeOnly.Parse(data.OpenTime) : null,
+            CloseTime = data.CloseTime != null ? TimeOnly.Parse(data.CloseTime) : null
+        };
+    }
+
+    public static DaySchedule Closed() => new() { IsOpen = false };
 }
