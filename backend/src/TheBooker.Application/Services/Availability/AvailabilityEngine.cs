@@ -130,12 +130,12 @@ public sealed class AvailabilityEngine
         }
 
         // Use regular schedule
-        if (!daySchedule.IsOpen)
+        if (!isOpenDay)
         {
             return (false, null, null, "Regularly closed");
         }
 
-        return (true, daySchedule.OpenTime, daySchedule.CloseTime, null);
+        return (true, openTimeDay, closeTimeDay, null);
     }
 
     /// <summary>
