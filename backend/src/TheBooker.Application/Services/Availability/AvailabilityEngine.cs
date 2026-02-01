@@ -98,7 +98,7 @@ public sealed class AvailabilityEngine
     /// Determines working hours based on schedule and overrides.
     /// </summary>
     private static (bool isOpen, TimeOnly? openTime, TimeOnly? closeTime, string? reason)
-        DetermineWorkingHours(DaySchedule daySchedule, ScheduleOverride? scheduleOverride)
+        DetermineWorkingHours(bool isOpenDay, TimeOnly? openTimeDay, TimeOnly? closeTimeDay, ScheduleOverride? scheduleOverride)
     {
         // If there's an override, it takes precedence
         if (scheduleOverride != null)
